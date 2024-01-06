@@ -4,29 +4,33 @@ function changeColor(e) {
     if(btnPress) {
         e.target.style.backgroundColor = "black";
     }
-}
+};
 
-function buttonDown() {
+function btnDown(e) {
+    //console.log("function btnDown()")
     //console.log("function buttonDown()")
+    // preventDefault() should only be active if there is a Grid
+    // because slider won't work
+    if(container.lastElementChild != null) {
+        e.preventDefault();
+    }
     btnPress = true;
-    console.log(btnPress);
-}
+};
 
-
-function buttonUp() {
-    //console.log("function buttonUp");
+function btnUp() {
+    //console.log("function buttonUp()");
     btnPress = false;
-    console.log(btnPress);
-}
+};
 
+function btnClick() {
+    console.log("function btnClick()");
+    btnPress = false;
+};
 
-  
+ 
 function setGrid(number, sizeSquare) {
     console.log("function setGrid(number)");
-    console.log("number: " + number)
-    console.log("sizeSquare: " + sizeSquare);
-    //let sizeSquare = setSquareSize(number);
-    //console.log(sizeSquare);
+
     for(let i=0; i < number; i++) {
         // create one row
         let row = document.createElement("div");
@@ -56,7 +60,6 @@ function setSquareSize(number) {
     // 2.calculate square width/height
     let size = (sizeContainer / number);
     size = size +"px";
-    console.log(size)
     return size;
 };
 
@@ -65,7 +68,6 @@ function deleteOldGrid() {
     // check if a grid is there, if so delete before new created
     if (container.lastElementChild != null) {
         let child = container.lastElementChild;
-        console.log(child);
         while(child) {
             container.removeChild(child);
             child = container.lastElementChild;
@@ -73,14 +75,19 @@ function deleteOldGrid() {
         console.log("====>")
         console.log(container.lastElementChild);   
     }
+  
+    // button Grid active button clear inactive
+    btnGrid.disabled = false;
+    btnClear.disabled = true;
+    console.log("xxx")
 };
 
 
 function getSquareCount() {
     console.log("function getSquareCount()");
     // get user input
-    let number = +(window.prompt("How many squares in row and column?"));
-    //console.log(number);
+    //let number = +(window.prompt("How many squares in row and column?"));
+    let number = document.querySelector("#inputSlider").value;
     
     // check if user input is a number and not bigger than 100
     if (number === number && number <= 100) {
@@ -92,26 +99,31 @@ function getSquareCount() {
 
 function main() {
     console.log("function main()");
-    // 1. get user inut
+    // btnClear now active
+    btnClear.disabled = false;
+    // 1. get user input
     let number = getSquareCount();
-    console.log(number);
     // 2 check if a grid is there, if so delete old grid
-    deleteOldGrid();
+    //deleteOldGrid();
     // 3. calculate size of a square
     let sizeSquare = setSquareSize(number);
     // 3. create Grid
     setGrid(number, sizeSquare);
 };
 
-let btnGrid = document.querySelector("#btnGrid").addEventListener("click", main);
-const container = document.querySelector("#container");
-
-
-let body = document.querySelector("body");
-console.log(body);
-
 let btnPress = false;
-body.addEventListener("mousedown", buttonDown) 
-body.addEventListener("mouseup", buttonUp)
+const btnClear = document.querySelector("#btnClear");
+btnClear.addEventListener("click", deleteOldGrid);
+btnClear.disabled = true;
+const btnGrid = document.querySelector("#btnGrid")
+btnGrid.addEventListener("click", (e) => {
+    // disable btnGird
+    e.target.disabled = true;
+    main()
+});
 
-
+const container = document.querySelector("#container");
+let body = document.querySelector("body");
+body.addEventListener("mousedown", btnDown); 
+body.addEventListener("mouseup", btnUp);
+body.addEventListener("click", btnClick);

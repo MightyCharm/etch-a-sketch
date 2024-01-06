@@ -8,14 +8,22 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="page">
-            <div>
+        <div class="main">
+            <div class="box-1">
                 <h1>Etch-a-Sketch</h1>
             </div>
-            <div>
-                <button id="btnGrid" class="btnGrid">Create Grid</button>
+         
+            <div class="box-2">
+                <div class="btn-box">
+                    <button id="btnGrid" class="btnGrid">Create Grid</button>
+                    <button id="btnClear" class="btnClear">Clear</button>
+                    <div class="slider">
+                        <input id="inputSlider"type="range" min="1" max="100" value="50" oninput="rangeValue.innerText = this.value">
+                        <p id="rangeValue">50</p>
+                    </div>
+                </div>
+                <div id="container" class="container"></div>
             </div>
-            <div id="container" class="container"></div>
         </div>
         <script src="script.js"></script>
     </body>

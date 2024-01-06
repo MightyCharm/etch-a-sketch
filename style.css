@@ -4,7 +4,7 @@ html {
     
 }
 
-.page {
+.main {
     border: 1px solid red;
     display: flex;
     flex-direction: column;
@@ -12,11 +12,22 @@ html {
     align-items: center;
 }
 
+.box-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-box {
+    display: flex;
+    flex-direction: column;;
+} 
+
 .container {
     background-color: rgb(229, 229, 229);
     /*border: 1px solid red;*/
-    display: flex;
-    flex-direction: column;
+    display: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     /* width/height must be the same value */
@@ -33,13 +44,13 @@ html {
 }
 
 .column {
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     /*width: 20px;*/
     /*min-width: 20px;*/
     /*background-color: yellow;*/
 }
 
-.btnGrid {
+.btnGrid, .btnClear {
     margin-bottom: 5px;
     font-size: 20px;
     border-radius: 5px;
