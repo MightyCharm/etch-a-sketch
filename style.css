@@ -4,25 +4,43 @@ html {
     
 }
 
-.container {
-    background-color: grey;
+.page {
     border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
+}
+
+.container {
+    background-color: grey;
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width/height must be the same value */
+    width: 900px;
+    height: 900px;
 }
 
 .row {
     /*border: 1px solid red;*/
     display: flex;
-    height: 20px;
-    gap: 3px;
-    margin-bottom: 3px;
+    /*height: 20px;*/
+    /*gap: 2px;*/
+    /*margin-bottom: 2px;*/
 }
 
 .column {
-    border: 1px solid black;
-    width: 20px;
+    /*border: 1px solid black;*/
+    /*width: 20px;*/
+    /*min-width: 20px;*/
 
+}
+
+.btnGrid {
+    margin-bottom: 5px;
+    font-size: 20px;
+    border-radius: 5px;
 }
