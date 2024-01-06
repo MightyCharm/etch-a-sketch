@@ -1,9 +1,25 @@
-function hover(e) {
+function changeColor(e) {
     console.log("function hover(e)");
     //console.log(e.target);
-    e.target.style.backgroundColor = "black";
-
+    if(btnPress) {
+        e.target.style.backgroundColor = "black";
+    }
 }
+
+function buttonDown() {
+    //console.log("function buttonDown()")
+    btnPress = true;
+    console.log(btnPress);
+}
+
+
+function buttonUp() {
+    //console.log("function buttonUp");
+    btnPress = false;
+    console.log(btnPress);
+}
+
+
   
 function setGrid(number, sizeSquare) {
     console.log("function setGrid(number)");
@@ -22,7 +38,7 @@ function setGrid(number, sizeSquare) {
             column.style.width = sizeSquare;
             column.style.height = sizeSquare;
             // add event listener to every column;
-            column.addEventListener("mouseover", hover)
+            column.addEventListener("mouseover", changeColor);
             // append column to row
             row.appendChild(column);
         }
@@ -36,7 +52,7 @@ function setSquareSize(number) {
     // calculate size of squares
     // 1. get container width
     let sizeContainer = document.querySelector("#container").clientWidth;
-    console.group(sizeContainer);
+    //console.group(sizeContainer);
     // 2.calculate square width/height
     let size = (sizeContainer / number);
     size = size +"px";
@@ -91,5 +107,11 @@ let btnGrid = document.querySelector("#btnGrid").addEventListener("click", main)
 const container = document.querySelector("#container");
 
 
+let body = document.querySelector("body");
+console.log(body);
+
+let btnPress = false;
+body.addEventListener("mousedown", buttonDown) 
+body.addEventListener("mouseup", buttonUp)
 
 
