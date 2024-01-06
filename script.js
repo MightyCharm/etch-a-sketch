@@ -24,10 +24,19 @@ function setSquareSize(number) {
 
 function setGrid(number) {
     console.log("function setGrid()");
-    //console.log(number);
-
     // check if a grid is there, if so delete before new created
+    if (container.lastElementChild != null) {
+        let child = container.lastElementChild;
+        console.log(child);
+        while(child) {
+            container.removeChild(child);
+            child = container.lastElementChild;
+        };
+        console.log("====>")
+        console.log(container.lastElementChild);
 
+        
+    } 
 
     let sizeSquare = setSquareSize(number);
     //console.log(sizeSquare);
@@ -62,6 +71,8 @@ function getSquareCount() {
         setGrid(number);
     }
 }
+
+
 
 
 let btnGrid = document.querySelector("#btnGrid").addEventListener("click", getSquareCount);
