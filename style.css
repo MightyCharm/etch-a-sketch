@@ -1,5 +1,28 @@
 html {
     width: 100vw;
     height: 100vw;
+    
+}
+
+.container {
     background-color: grey;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;;
+}
+
+.row {
+    /*border: 1px solid red;*/
+    display: flex;
+    height: 20px;
+    gap: 3px;
+    margin-bottom: 3px;
+}
+
+.column {
+    border: 1px solid black;
+    width: 20px;
+
 }
