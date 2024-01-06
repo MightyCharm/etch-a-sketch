@@ -13,7 +13,7 @@ html {
 }
 
 .container {
-    background-color: grey;
+    background-color: rgb(229, 229, 229);
     /*border: 1px solid red;*/
     display: flex;
     flex-direction: column;
@@ -33,10 +33,10 @@ html {
 }
 
 .column {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     /*width: 20px;*/
     /*min-width: 20px;*/
-
+    /*background-color: yellow;*/
 }
 
 .btnGrid {
