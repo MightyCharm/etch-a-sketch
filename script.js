@@ -1,13 +1,23 @@
-function changeColor(e) {
-    console.log("function hover(e)");
-    //console.log(e.target);
+
+function mouseEnter(e) {
+    console.log("function mouseEnter()");
+    mouseIn = true;
     if(btnPress) {
         e.target.style.backgroundColor = "black";
     }
-};
+    //console.log("mouseIn: " + mouseIn);
+    
+}
+
+function mouseLeave() {
+    //console.log("function mouseLeave()");
+    mouseIn = false;
+    //console.log("mouseIn: " + mouseIn);
+}
+
 
 function btnDown(e) {
-    //console.log("function btnDown()")
+    console.log("function btnDown()")
     //console.log("function buttonDown()")
     // preventDefault() should only be active if there is a Grid
     // because slider won't work
@@ -15,18 +25,26 @@ function btnDown(e) {
         e.preventDefault();
     }
     btnPress = true;
+    if(mouseIn) {
+        e.target.style.backgroundColor = "black";
+    }
+    console.log("btnPress: " + btnPress);
 };
+
+
+
 
 function btnUp() {
     //console.log("function buttonUp()");
     btnPress = false;
+    console.log("btnPress: " + btnPress);
 };
 
-function btnClick() {
-    console.log("function btnClick()");
-    btnPress = false;
+function changeColor(e) {
+    console.log("function changeColor(e)");
+    
+    
 };
-
  
 function setGrid(number, sizeSquare) {
     console.log("function setGrid(number)");
@@ -42,7 +60,9 @@ function setGrid(number, sizeSquare) {
             column.style.width = sizeSquare;
             column.style.height = sizeSquare;
             // add event listener to every column;
-            column.addEventListener("mouseover", changeColor);
+            //column.addEventListener("mouseenter", changeColor);
+            column.addEventListener("mouseenter", mouseEnter);
+            column.addEventListener("mouseleave", mouseLeave);
             // append column to row
             row.appendChild(column);
         }
@@ -55,10 +75,11 @@ function setSquareSize(number) {
     console.log("function setSquareSize()");
     // calculate size of squares
     // 1. get container width
-    let sizeContainer = document.querySelector("#container").clientWidth;
-    //console.group(sizeContainer);
+    //let sizeContainer = document.querySelector("#container").clientWidth;
+    console.group(document.querySelector("#container").clientHeight);
     // 2.calculate square width/height
-    let size = (sizeContainer / number);
+    let sizeContainer = 800;
+    let size = sizeContainer / number;
     size = size +"px";
     return size;
 };
@@ -88,7 +109,6 @@ function getSquareCount() {
     // get user input
     //let number = +(window.prompt("How many squares in row and column?"));
     let number = document.querySelector("#inputSlider").value;
-    
     // check if user input is a number and not bigger than 100
     if (number === number && number <= 100) {
         //setGrid(number);
@@ -111,7 +131,9 @@ function main() {
     setGrid(number, sizeSquare);
 };
 
+
 let btnPress = false;
+let mouseIn = false;
 const btnClear = document.querySelector("#btnClear");
 btnClear.addEventListener("click", deleteOldGrid);
 btnClear.disabled = true;
@@ -123,7 +145,10 @@ btnGrid.addEventListener("click", (e) => {
 });
 
 const container = document.querySelector("#container");
+//container.style.height = "900px";
+//container.style.width = "900px";
+
+
 let body = document.querySelector("body");
 body.addEventListener("mousedown", btnDown); 
 body.addEventListener("mouseup", btnUp);
-body.addEventListener("click", btnClick);

@@ -8,23 +8,31 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="main">
-            <div class="box-1">
-                <h1>Etch-a-Sketch</h1>
+        <div class="flex-container">
+            <div class="flexbox-1">
+                <div class="header">Etch-a-Sketch</div>
             </div>
-         
-            <div class="box-2">
-                <div class="btn-box">
+            
+            <div class="flexbox-2">
+                <div class="inputBox">
                     <button id="btnGrid" class="btnGrid">Create Grid</button>
                     <button id="btnClear" class="btnClear">Clear</button>
                     <div class="slider">
-                        <input id="inputSlider"type="range" min="1" max="100" value="50" oninput="rangeValue.innerText = this.value">
-                        <p id="rangeValue">50</p>
+                        <input id="inputSlider" class="inputSlider" type="range" min="1" max="100" value="50" oninput="rangeValue.innerText = `${this.value} Squares`">
+                        <div id="rangeValue" class="rangeValue">50 Squares</div>
                     </div>
                 </div>
+
                 <div id="container" class="container"></div>
+                
+            
             </div>
-        </div>
+
+
+            
+               
+         
+       
         <script src="script.js"></script>
     </body>
 </html>
