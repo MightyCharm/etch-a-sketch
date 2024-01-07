@@ -1,4 +1,6 @@
 
+// event column
+// 1. if button is pressed an a new column is enter, set background color
 function mouseEnter(e) {
     console.log("function mouseEnter()");
     mouseIn = true;
@@ -9,13 +11,15 @@ function mouseEnter(e) {
     
 }
 
+// event column
 function mouseLeave() {
     //console.log("function mouseLeave()");
     mouseIn = false;
     //console.log("mouseIn: " + mouseIn);
 }
 
-
+// event body
+//2. if button is pressed and mouse is in an column, set background color
 function btnDown(e) {
     console.log("function btnDown()")
     //console.log("function buttonDown()")
@@ -31,21 +35,13 @@ function btnDown(e) {
     console.log("btnPress: " + btnPress);
 };
 
-
-
-
+// event body
 function btnUp() {
     //console.log("function buttonUp()");
     btnPress = false;
     console.log("btnPress: " + btnPress);
 };
 
-function changeColor(e) {
-    console.log("function changeColor(e)");
-    
-    
-};
- 
 function setGrid(number, sizeSquare) {
     console.log("function setGrid(number)");
 
