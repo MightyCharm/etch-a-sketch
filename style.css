@@ -5,7 +5,7 @@
 html {
     width: 100vw;
     height: 100vw;
-    background-color:rgb(51, 57, 98)
+    background-color:rgb(221, 222, 234)
 }
 
 
@@ -23,10 +23,11 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    font-size: 60px;
+    font-weight: bold;
     padding: 20px;
     margin-left: 250px;
-    color: white;
+    color: black;
 }
 
 .flexbox-2 {
@@ -47,7 +48,7 @@ html {
 }
 
 .container {
-    background-color: rgb(206, 205, 214);
+    background-color: rgb(255, 255, 255);
     border: 1px ridge grey;
     display: flex;
     flex-direction: row;
