@@ -43,8 +43,16 @@ html {
     flex-direction: column;
     width: 300px;
     margin-right: 20px;
-    color: white;
+
    
+}
+
+.features {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
 }
 
 .container {
@@ -96,4 +104,23 @@ html {
 .rangeValue {
     text-align: center;
     font-size: 30px;
+    
+}
+
+.txtFeat {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.btnColor, .btnDark {
+    font-size: 25px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.btnColor {
+    margin-bottom: 10px;
+}
+
+.btnDark {
 }

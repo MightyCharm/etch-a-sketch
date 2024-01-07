@@ -1,45 +1,65 @@
 
+function changeColor(e) {
+    console.log("function changeColor()");
+    // logic for color and darkening mode
+    if(colorMode === false && darkMode === false) {
+        e.target.style.backgroundColor = "black";
+    };
+
+    // color mode
+    if(colorMode === true && darkMode === false) {
+        console.log("uuuuhh yeah  colorModeon");
+        let red = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        e.target.style.backgroundColor = `rgb(${red},${green},${blue})`;
+    };
+    // dark mode
+    if(colorMode === false && darkMode === true) {
+        console.log("uhhhh yeah  darkMode");
+    };
+
+}
+
+
+
 // event column
-// 1. if button is pressed an a new column is enter, set background color
+// 1. if button is pressed an a new column is enter, call changeColor()
 function mouseEnter(e) {
-    console.log("function mouseEnter()");
+    //console.log("function mouseEnter()");
     mouseIn = true;
     if(btnPress) {
-        e.target.style.backgroundColor = "black";
+        changeColor(e);
     }
-    //console.log("mouseIn: " + mouseIn);
-    
-}
+};
 
 // event column
 function mouseLeave() {
     //console.log("function mouseLeave()");
     mouseIn = false;
     //console.log("mouseIn: " + mouseIn);
-}
+};
 
 // event body
-//2. if button is pressed and mouse is in an column, set background color
+//2. if button is pressed and mouse is in an column, call changeColor()
 function btnDown(e) {
-    console.log("function btnDown()")
-    //console.log("function buttonDown()")
-    // preventDefault() should only be active if there is a Grid
-    // because slider won't work
+    //console.log("function btnDown()")
+    // slider only works if there is not grid
     if(container.lastElementChild != null) {
         e.preventDefault();
-    }
+    };
     btnPress = true;
     if(mouseIn) {
-        e.target.style.backgroundColor = "black";
-    }
-    console.log("btnPress: " + btnPress);
+        changeColor(e);
+    };
+    //console.log("btnPress: " + btnPress);
 };
 
 // event body
 function btnUp() {
     //console.log("function buttonUp()");
     btnPress = false;
-    console.log("btnPress: " + btnPress);
+    //console.log("btnPress: " + btnPress);
 };
 
 function setGrid(number, sizeSquare) {
@@ -71,10 +91,8 @@ function setSquareSize(number) {
     console.log("function setSquareSize()");
     // calculate size of squares
     // 1. get container width
-    //let sizeContainer = document.querySelector("#container").clientWidth;
-    console.group(document.querySelector("#container").clientHeight);
     // 2.calculate square width/height
-    let sizeContainer = 800;
+    let sizeContainer = document.querySelector("#container").clientHeight;
     let size = sizeContainer / number;
     size = size +"px";
     return size;
@@ -88,10 +106,8 @@ function deleteOldGrid() {
         while(child) {
             container.removeChild(child);
             child = container.lastElementChild;
-        };
-        console.log("====>")
-        console.log(container.lastElementChild);   
-    }
+        };   
+    };
   
     // button Grid active button clear inactive
     btnGrid.disabled = false;
@@ -130,15 +146,46 @@ function main() {
 
 let btnPress = false;
 let mouseIn = false;
-const btnClear = document.querySelector("#btnClear");
-btnClear.addEventListener("click", deleteOldGrid);
-btnClear.disabled = true;
+let colorMode = false;
+let darkMode = false;
+
 const btnGrid = document.querySelector("#btnGrid")
+const btnClear = document.querySelector("#btnClear");
+const btnColor = document.querySelector("#btnColor");
+const btnDark = document.querySelector("#btnDark");
+
 btnGrid.addEventListener("click", (e) => {
     // disable btnGird
     e.target.disabled = true;
     main()
 });
+
+btnClear.addEventListener("click", deleteOldGrid);
+btnClear.disabled = true;
+
+btnColor.addEventListener("click", () => {
+    if(colorMode) {
+        colorMode = false;
+        btnDark.disabled = false;
+    } else {
+        colorMode = true;
+        btnDark.disabled = true;
+    }
+});
+
+btnDark.addEventListener("click", () => {
+    switch(darkMode) {
+        case true:
+            darkMode = false;
+            btnColor.disabled = false;
+            break;
+        case false:
+            darkMode = true;
+            btnColor.disabled = true;
+            break;
+    }
+    console.log(darkMode);
+})
 
 const container = document.querySelector("#container");
 //container.style.height = "900px";
