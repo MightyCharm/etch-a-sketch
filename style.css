@@ -87,14 +87,37 @@ html {
 
 }
 
-.btnGrid, .btnClear, .inputSlider {
+.btnCreate, .btnDelete, .btnClear, .inputSlider {
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 30px;
+    background-color: rgb(56, 56, 58);
+    color:white;
+    padding: 5px;
 }
 
-.btnGrid:hover {
-    background-color: rgb(255, 255, 255);
+
+.btnCreate:disabled {
+    background-color: rgb(185, 201, 201);
+    color:rgb(140, 140, 140);
+}
+
+.btnCreate:hover {
+    background-color: rgb(90, 90, 91);;
+}
+
+.btnDelete:hover {
+    background-color: rgb(90, 90, 91);;
+}
+
+
+.btnClear:disabled {
+    background-color: rgb(185, 201, 201);
+    color:rgb(140, 140, 140);
+}
+
+.btnClear:hover {
+    background-color: rgb(90, 90, 91);;
 }
 
 .inputSlider {
@@ -112,15 +135,33 @@ html {
     margin-bottom: 5px;
 }
 
-.btnColor, .btnDark {
+.btnNormal, .btnColor, .btnDark {
     font-size: 25px;
     width: 300px;
-    border-radius: 5px;
+    border-radius: 20px;
+    background-color: rgb(56, 56, 58);
+    color:white;
+    padding: 5px;
+}
+
+.btnNormal {
+    margin-bottom: 10px;
+}
+
+.btnNormal:hover {
+    background-color: rgb(90, 90, 91);;
 }
 
 .btnColor {
     margin-bottom: 10px;
 }
 
-.btnDark {
+.btnColor:hover {
+    background-color: rgb(90, 90, 91);;
 }
+
+.btnDark:hover {
+    background-color: rgb(90, 90, 91);;
+}
+
+

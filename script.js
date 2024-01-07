@@ -8,7 +8,6 @@ function changeColor(e) {
 
     // color mode
     if(colorMode === true && darkMode === false) {
-        console.log("uuuuhh yeah  colorModeon");
         let red = Math.floor(Math.random() * 256);
         let green = Math.floor(Math.random() * 256);
         let blue = Math.floor(Math.random() * 256);
@@ -16,12 +15,14 @@ function changeColor(e) {
     };
     // dark mode
     if(colorMode === false && darkMode === true) {
+        // variable saves color... 255 - 10%
+        console.log(e.target.style.backgroundColor);
+        // get color
+        // color -10%
         console.log("uhhhh yeah  darkMode");
     };
 
-}
-
-
+};
 
 // event column
 // 1. if button is pressed an a new column is enter, call changeColor()
@@ -84,7 +85,7 @@ function setGrid(number, sizeSquare) {
         }
         // append row to container
         container.appendChild(row);
-    }
+    };
 };
 
 function setSquareSize(number) {
@@ -110,11 +111,17 @@ function deleteOldGrid() {
     };
   
     // button Grid active button clear inactive
-    btnGrid.disabled = false;
-    btnClear.disabled = true;
-    console.log("xxx")
+    btnCreate.disabled = false;
 };
 
+function clearGrid() {
+    //console.log("function clearGrid()");
+    // get a nodelist of all columns
+    let columns = document.querySelectorAll(".column");
+    for(let i=0; i < columns.length; i++) {
+        columns[i].style.backgroundColor = "white";
+    };
+};
 
 function getSquareCount() {
     console.log("function getSquareCount()");
@@ -128,16 +135,13 @@ function getSquareCount() {
     }
 }
 
-
 function main() {
     console.log("function main()");
     // btnClear now active
-    btnClear.disabled = false;
+    //btnDelete.disabled = false;
     // 1. get user input
     let number = getSquareCount();
-    // 2 check if a grid is there, if so delete old grid
-    //deleteOldGrid();
-    // 3. calculate size of a square
+    // 2. calculate size of a square
     let sizeSquare = setSquareSize(number);
     // 3. create Grid
     setGrid(number, sizeSquare);
@@ -146,46 +150,46 @@ function main() {
 
 let btnPress = false;
 let mouseIn = false;
+let normalMode = false;
 let colorMode = false;
 let darkMode = false;
 
-const btnGrid = document.querySelector("#btnGrid")
+const btnCreate = document.querySelector("#btnCreate");
+const btnDelete = document.querySelector("#btnDelete");
 const btnClear = document.querySelector("#btnClear");
+const btnNormal = document.querySelector("#btnNormal");
 const btnColor = document.querySelector("#btnColor");
 const btnDark = document.querySelector("#btnDark");
 
-btnGrid.addEventListener("click", (e) => {
+btnCreate.addEventListener("click", (e) => {
     // disable btnGird
     e.target.disabled = true;
     main()
 });
 
-btnClear.addEventListener("click", deleteOldGrid);
-btnClear.disabled = true;
+btnDelete.addEventListener("click", deleteOldGrid);
+
+btnClear.addEventListener("click", clearGrid);
+
+
+btnNormal.addEventListener("click", () => {
+    normalMode = true;
+    colorMode = false;
+    darkMode = false;
+});
 
 btnColor.addEventListener("click", () => {
-    if(colorMode) {
-        colorMode = false;
-        btnDark.disabled = false;
-    } else {
-        colorMode = true;
-        btnDark.disabled = true;
-    }
+    normalMode = false;
+    colorMode = true;
+    darkMode = false;
+    
 });
 
 btnDark.addEventListener("click", () => {
-    switch(darkMode) {
-        case true:
-            darkMode = false;
-            btnColor.disabled = false;
-            break;
-        case false:
-            darkMode = true;
-            btnColor.disabled = true;
-            break;
-    }
-    console.log(darkMode);
-})
+    normalMode = false;
+    colorMode = false;
+    darkMode = true;
+});
 
 const container = document.querySelector("#container");
 //container.style.height = "900px";
@@ -193,5 +197,5 @@ const container = document.querySelector("#container");
 
 
 let body = document.querySelector("body");
-body.addEventListener("mousedown", btnDown); 
-body.addEventListener("mouseup", btnUp);
+container.addEventListener("mousedown", btnDown); 
+container.addEventListener("mouseup", btnUp);
