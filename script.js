@@ -170,9 +170,12 @@ const btnColor = document.querySelector("#btnColor");
 const btnDark = document.querySelector("#btnDark");
 const InputSlider = document.querySelector("#inputSlider");
 
-container.addEventListener("mousedown", btnDown); 
-container.addEventListener("mouseup", btnUp);
-btnClear.addEventListener("click", clearGrid);
+const html = document.querySelector("html");
+
+
+html.addEventListener("mousedown", btnDown); // container. 
+html.addEventListener("mouseup", btnUp); // container.
+btnClear.addEventListener("click", clearGrid); // container.
 btnNormal.addEventListener("click", () => {
     normalMode = true;
     colorMode = false;
@@ -200,7 +203,7 @@ InputSlider.addEventListener("change", (e) => {
 main(initialGrid);
 
 
-const html = document.querySelector("html");
+
 html.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
     e.preventDefault();
 })
