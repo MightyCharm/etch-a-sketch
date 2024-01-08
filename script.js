@@ -62,17 +62,15 @@ function mouseLeave() {
 //2. if button is pressed and mouse is in an column, call changeColor()
 function btnDown(e) {
     //console.log("function btnDown()")
-    e.preventDefault();
     btnPress = true;
     if(mouseIn) {
         changeColor(e);
     };
-    //console.log("btnPress: " + btnPress);
 };
 
 // event body
 function btnUp() {
-    //console.log("function buttonUp()");
+    console.log("function buttonUp()");
     btnPress = false;
     //console.log("btnPress: " + btnPress);
 };
@@ -196,6 +194,7 @@ btnDark.addEventListener("click", () => {
 });
 
 InputSlider.addEventListener("change", (e) => {
+    console.log("InputSLider changed")
     main(e);
 })
 
@@ -203,9 +202,29 @@ InputSlider.addEventListener("change", (e) => {
 main(initialGrid);
 
 
+// prevent default behavior of drag and drop because it results in bugs,
+// using html element would be shorter but than slider doesn't work anymore
+btnClear.addEventListener("mousedown", (e) => {
+    e.preventDefault(); 
+});
 
+btnNormal.addEventListener("mousedown", (e) => {
+    e.preventDefault(); 
+});
+
+btnColor.addEventListener("mousedown", (e) => {
+    e.preventDefault(); 
+});
+
+btnDark.addEventListener("mousedown", (e) => {
+    e.preventDefault(); 
+});
+
+
+/*
 html.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
     e.preventDefault();
 })
+*/
 console.log(html);
 
