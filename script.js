@@ -2,24 +2,41 @@
 function changeColor(e) {
     console.log("function changeColor()");
     // logic for color and darkening mode
-    if(colorMode === false && darkMode === false) {
+    if(normalMode === true &&colorMode === false && darkMode === false) {
         e.target.style.backgroundColor = "black";
     };
 
     // color mode
-    if(colorMode === true && darkMode === false) {
+    if(normalMode === false && colorMode === true && darkMode === false) {
         let red = Math.floor(Math.random() * 256);
         let green = Math.floor(Math.random() * 256);
         let blue = Math.floor(Math.random() * 256);
         e.target.style.backgroundColor = `rgb(${red},${green},${blue})`;
     };
     // dark mode
-    if(colorMode === false && darkMode === true) {
+    if(normalMode === false && colorMode === false && darkMode === true) {
         // variable saves color... 255 - 10%
-        console.log(e.target.style.backgroundColor);
-        // get color
-        // color -10%
-        console.log("uhhhh yeah  darkMode");
+        // use regular Expression to get a list of colors (red, green, blue)
+        let colorStr = getComputedStyle(e.target).backgroundColor;
+        let regex = /\d+/g;
+        let result = colorStr.match(regex);
+        // creating new string with every color value set to - 25.5
+        let newColorStr = "rgb(";
+        for(let i=0; i < result.length; i++) {
+            let num = +result[i] // string into number
+            num -= 26;
+            if(num < 0) { // if the result is smaller than 0, set 0
+                num = 0;
+            }
+            console.log(num);
+            if(i === result.length - 1) { // last iteration
+                newColorStr += num + ")";
+                break;
+            };
+            newColorStr += num + ", ";
+
+        };
+        e.target.style.backgroundColor = newColorStr;
     };
 
 };
@@ -45,10 +62,7 @@ function mouseLeave() {
 //2. if button is pressed and mouse is in an column, call changeColor()
 function btnDown(e) {
     //console.log("function btnDown()")
-    // slider only works if there is not grid
-    if(container.lastElementChild != null) {
-        e.preventDefault();
-    };
+    e.preventDefault();
     btnPress = true;
     if(mouseIn) {
         changeColor(e);
@@ -76,6 +90,7 @@ function setGrid(number, sizeSquare) {
             column.setAttribute("class", "column")
             column.style.width = sizeSquare;
             column.style.height = sizeSquare;
+            column.style.backgroundColor = "rgb(255,255,255)";
             // add event listener to every column;
             //column.addEventListener("mouseenter", changeColor);
             column.addEventListener("mouseenter", mouseEnter);
@@ -156,10 +171,7 @@ const InputSlider = document.querySelector("#inputSlider");
 
 container.addEventListener("mousedown", btnDown); 
 container.addEventListener("mouseup", btnUp);
-
 btnClear.addEventListener("click", clearGrid);
-
-
 btnNormal.addEventListener("click", () => {
     normalMode = true;
     colorMode = false;
@@ -178,7 +190,6 @@ btnDark.addEventListener("click", () => {
     colorMode = false;
     darkMode = true;
 });
-
 
 InputSlider.addEventListener("change", (e) => {
     main(e);
