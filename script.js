@@ -51,7 +51,6 @@ function mouseEnter(e) {
     }
 };
 
-// event column
 function mouseLeave() {
     //console.log("function mouseLeave()");
     mouseIn = false;
@@ -166,10 +165,8 @@ const btnClear = document.querySelector("#btnClear");
 const btnNormal = document.querySelector("#btnNormal");
 const btnColor = document.querySelector("#btnColor");
 const btnDark = document.querySelector("#btnDark");
-const InputSlider = document.querySelector("#inputSlider");
-
+const inputSlider = document.querySelector("#inputSlider");
 const html = document.querySelector("html");
-
 
 html.addEventListener("mousedown", btnDown); // container. 
 html.addEventListener("mouseup", btnUp); // container.
@@ -193,7 +190,7 @@ btnDark.addEventListener("click", () => {
     darkMode = true;
 });
 
-InputSlider.addEventListener("change", (e) => {
+inputSlider.addEventListener("change", (e) => {
     console.log("InputSLider changed")
     main(e);
 })
@@ -202,29 +199,17 @@ InputSlider.addEventListener("change", (e) => {
 main(initialGrid);
 
 
-// prevent default behavior of drag and drop because it results in bugs,
-// using html element would be shorter but than slider doesn't work anymore
-btnClear.addEventListener("mousedown", (e) => {
-    e.preventDefault(); 
-});
-
-btnNormal.addEventListener("mousedown", (e) => {
-    e.preventDefault(); 
-});
-
-btnColor.addEventListener("mousedown", (e) => {
-    e.preventDefault(); 
-});
-
-btnDark.addEventListener("mousedown", (e) => {
-    e.preventDefault(); 
-});
-
-
-/*
-html.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
+container.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
     e.preventDefault();
-})
-*/
-console.log(html);
+});
 
+
+// drag and drop behavior should only allowed over slider because of text selection bug
+html.addEventListener("mousemove", (e) => {
+    if(e.target != inputSlider) {
+        console.log("prevent")
+        e.preventDefault()
+    } else {
+        console.log("input should work now")
+    };
+});
