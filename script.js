@@ -137,7 +137,7 @@ function clearGrid() {
 
 
 function main(e) {
-
+    
     console.log("function main()");
     // remove old grid if there is one
     deleteOldGrid();
@@ -146,6 +146,7 @@ function main(e) {
         number = e.target.value;
     } else {
         number = 50;
+        normalMode = true;
     };
     console.log("number: " + number);
     // 2. calculate size of a square
@@ -197,4 +198,11 @@ InputSlider.addEventListener("change", (e) => {
 
 // on first load grid will be created
 main(initialGrid);
+
+
+const html = document.querySelector("html");
+html.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
+    e.preventDefault();
+})
+console.log(html);
 
