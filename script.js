@@ -25,7 +25,7 @@ function changeColor(e) {
 };
 
 // event column
-// 1. if button is pressed an a new column is enter, call changeColor()
+// 1. if button is pressed an a new column is entered, call changeColor()
 function mouseEnter(e) {
     //console.log("function mouseEnter()");
     mouseIn = true;
@@ -109,9 +109,6 @@ function deleteOldGrid() {
             child = container.lastElementChild;
         };   
     };
-  
-    // button Grid active button clear inactive
-    btnCreate.disabled = false;
 };
 
 function clearGrid() {
@@ -123,24 +120,19 @@ function clearGrid() {
     };
 };
 
-function getSquareCount() {
-    console.log("function getSquareCount()");
-    // get user input
-    //let number = +(window.prompt("How many squares in row and column?"));
-    let number = document.querySelector("#inputSlider").value;
-    // check if user input is a number and not bigger than 100
-    if (number === number && number <= 100) {
-        //setGrid(number);
-        return number;
-    }
-}
 
-function main() {
+function main(e) {
+
     console.log("function main()");
-    // btnClear now active
-    //btnDelete.disabled = false;
-    // 1. get user input
-    let number = getSquareCount();
+    // remove old grid if there is one
+    deleteOldGrid();
+    let number;
+    if(e != 50) {
+        number = e.target.value;
+    } else {
+        number = 50;
+    };
+    console.log("number: " + number);
     // 2. calculate size of a square
     let sizeSquare = setSquareSize(number);
     // 3. create Grid
@@ -153,21 +145,17 @@ let mouseIn = false;
 let normalMode = false;
 let colorMode = false;
 let darkMode = false;
+let initialGrid = 50;
 
-const btnCreate = document.querySelector("#btnCreate");
-const btnDelete = document.querySelector("#btnDelete");
+const container = document.querySelector("#container");
 const btnClear = document.querySelector("#btnClear");
 const btnNormal = document.querySelector("#btnNormal");
 const btnColor = document.querySelector("#btnColor");
 const btnDark = document.querySelector("#btnDark");
+const InputSlider = document.querySelector("#inputSlider");
 
-btnCreate.addEventListener("click", (e) => {
-    // disable btnGird
-    e.target.disabled = true;
-    main()
-});
-
-btnDelete.addEventListener("click", deleteOldGrid);
+container.addEventListener("mousedown", btnDown); 
+container.addEventListener("mouseup", btnUp);
 
 btnClear.addEventListener("click", clearGrid);
 
@@ -191,11 +179,11 @@ btnDark.addEventListener("click", () => {
     darkMode = true;
 });
 
-const container = document.querySelector("#container");
-//container.style.height = "900px";
-//container.style.width = "900px";
 
+InputSlider.addEventListener("change", (e) => {
+    main(e);
+})
 
-let body = document.querySelector("body");
-container.addEventListener("mousedown", btnDown); 
-container.addEventListener("mouseup", btnUp);
+// on first load grid will be created
+main(initialGrid);
+
