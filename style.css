@@ -10,7 +10,6 @@ html {
 
 
 .flex-container {
-    /*border: 4px solid red;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,7 +17,6 @@ html {
 }
 
 .flexbox-1 {
-    /*border: 1px solid green;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +28,6 @@ html {
 }
 
 .flexbox-2 {
-    /*border: 4px solid yellow;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,17 +36,13 @@ html {
 }
 
 .inputBox {
-    /*border: 1px solid red;*/
     display: flex;
     flex-direction: column;
     width: 300px;
-    margin-right: 100px;
-
-   
+    margin-right: 100px; 
 }
 
 .features {
-    /*border: 1px solid red;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,7 +50,6 @@ html {
 }
 
 .container {
-    /*background-color: rgb(255, 255, 255);*/
     background-color: rgba(255, 255, 255);
     border: 1px ridge grey;
     display: flex;
@@ -70,26 +62,11 @@ html {
 }
 
 .row {
-    /*border: 1px solid red;*/
     display: flex;
     flex-direction: column;
-    /*height: 20px;*/
-    /*gap: 2px;*/
-    /*margin-bottom: 2px;*/
 }
 
-.column {
-    /*border: 1px solid black;*/
-    /*width: 20px;*/
-    /*min-width: 20px;*/
-    /*background-color: yellow;*/
-}
-
-.header {
-
-}
-
-.btnCreate, .btnClear, .inputSlider {
+.btnClear, .inputSlider {
     margin-bottom: 10px;
     border-radius: 20px;
     font-size: 30px;
@@ -98,23 +75,8 @@ html {
     padding: 5px;
 }
 
-
-.btnCreate:disabled {
-    background-color: rgb(185, 201, 201);
-    color:rgb(140, 140, 140);
-}
-
-.btnCreate:hover {
-    background-color: rgb(90, 90, 91);;
-}
-
-.btnClear:disabled {
-    background-color: rgb(185, 201, 201);
-    color:rgb(140, 140, 140);
-}
-
 .btnClear:hover {
-    background-color: rgb(90, 90, 91);;
+    background-color: rgb(90, 90, 91);
 }
 
 .inputSlider {
@@ -146,7 +108,7 @@ html {
 }
 
 .btnNormal:hover {
-    background-color: rgb(90, 90, 91);;
+    background-color: rgb(90, 90, 91);
 }
 
 .btnColor {
@@ -154,11 +116,9 @@ html {
 }
 
 .btnColor:hover {
-    background-color: rgb(90, 90, 91);;
+    background-color: rgb(90, 90, 91);
 }
 
 .btnDark:hover {
-    background-color: rgb(90, 90, 91);;
+    background-color: rgb(90, 90, 91);
 }
-
-

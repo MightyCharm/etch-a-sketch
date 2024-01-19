@@ -1,6 +1,23 @@
 
+function setBtnColor() {
+    //console.log("function setBtnColor()");
+    btnNormal.style.backgroundColor = btnCol;
+    btnColor.style.backgroundColor = btnCol;
+    btnDark.style.backgroundColor = btnCol;
+    if(normalMode) {
+        btnNormal.style.backgroundColor = btnBgColActive;
+    };
+    if(colorMode) {
+        btnColor.style.backgroundColor = btnBgColActive;
+    };
+    if(darkMode) {  
+        btnDark.style.backgroundColor = btnBgColActive;
+    };
+};
+
+
 function changeColor(e) {
-    console.log("function changeColor()");
+    //console.log("function changeColor()");
     // logic for color and darkening mode
     if(normalMode === true &&colorMode === false && darkMode === false) {
         e.target.style.backgroundColor = "black";
@@ -28,7 +45,7 @@ function changeColor(e) {
             if(num < 0) { // if the result is smaller than 0, set 0
                 num = 0;
             }
-            console.log(num);
+            //console.log(num);
             if(i === result.length - 1) { // last iteration
                 newColorStr += num + ")";
                 break;
@@ -48,13 +65,12 @@ function mouseEnter(e) {
     mouseIn = true;
     if(btnPress) {
         changeColor(e);
-    }
+    };
 };
 
 function mouseLeave() {
     //console.log("function mouseLeave()");
     mouseIn = false;
-    //console.log("mouseIn: " + mouseIn);
 };
 
 // event body
@@ -69,13 +85,12 @@ function btnDown(e) {
 
 // event body
 function btnUp() {
-    console.log("function buttonUp()");
+    //console.log("function btnUp()");
     btnPress = false;
-    //console.log("btnPress: " + btnPress);
 };
 
 function setGrid(number, sizeSquare) {
-    console.log("function setGrid(number)");
+    //console.log("function setGrid(number)");
 
     for(let i=0; i < number; i++) {
         // create one row
@@ -101,7 +116,7 @@ function setGrid(number, sizeSquare) {
 };
 
 function setSquareSize(number) {
-    console.log("function setSquareSize()");
+    //console.log("function setSquareSize()");
     // calculate size of squares
     // 1. get container width
     // 2.calculate square width/height
@@ -112,7 +127,7 @@ function setSquareSize(number) {
 };
 
 function deleteOldGrid() {
-    console.log("function deleteOldGrid()");
+    //console.log("function deleteOldGrid()");
     // check if a grid is there, if so delete before new created
     if (container.lastElementChild != null) {
         let child = container.lastElementChild;
@@ -125,18 +140,16 @@ function deleteOldGrid() {
 
 function clearGrid() {
     //console.log("function clearGrid()");
-    // get a nodelist of all columns
+    // get a node list of all columns
     let columns = document.querySelectorAll(".column");
     for(let i=0; i < columns.length; i++) {
         columns[i].style.backgroundColor = "white";
     };
 };
 
-
-function main(e) {
-    
-    console.log("function main()");
-    // remove old grid if there is one
+function main(e) {  
+    //console.log("function main()");
+    // 1. remove old grid if there is one
     deleteOldGrid();
     let number;
     if(e != 50) {
@@ -145,7 +158,6 @@ function main(e) {
         number = 50;
         normalMode = true;
     };
-    console.log("number: " + number);
     // 2. calculate size of a square
     let sizeSquare = setSquareSize(number);
     // 3. create Grid
@@ -159,6 +171,8 @@ let normalMode = false;
 let colorMode = false;
 let darkMode = false;
 let initialGrid = 50;
+let btnCol = "rgb(56, 56, 58)";
+let btnBgColActive = "rgb(0, 0, 0)";
 
 const container = document.querySelector("#container");
 const btnClear = document.querySelector("#btnClear");
@@ -170,17 +184,21 @@ const html = document.querySelector("html");
 
 html.addEventListener("mousedown", btnDown); // container. 
 html.addEventListener("mouseup", btnUp); // container.
+
 btnClear.addEventListener("click", clearGrid); // container.
+
 btnNormal.addEventListener("click", () => {
     normalMode = true;
     colorMode = false;
     darkMode = false;
+    setBtnColor();
 });
 
 btnColor.addEventListener("click", () => {
     normalMode = false;
     colorMode = true;
     darkMode = false;
+    setBtnColor();
     
 });
 
@@ -188,16 +206,12 @@ btnDark.addEventListener("click", () => {
     normalMode = false;
     colorMode = false;
     darkMode = true;
+    setBtnColor();
 });
 
 inputSlider.addEventListener("change", (e) => {
-    console.log("InputSLider changed")
     main(e);
-})
-
-// on first load grid will be created
-main(initialGrid);
-
+});
 
 container.addEventListener("mousedown", (e) => { // prevent drag and drop behavior
     e.preventDefault();
@@ -207,9 +221,10 @@ container.addEventListener("mousedown", (e) => { // prevent drag and drop behavi
 // drag and drop behavior should only allowed over slider because of text selection bug
 html.addEventListener("mousemove", (e) => {
     if(e.target != inputSlider) {
-        console.log("prevent")
         e.preventDefault()
-    } else {
-        console.log("input should work now")
     };
 });
+
+// on first load grid will be created
+main(initialGrid);
+btnNormal.style.backgroundColor = btnBgColActive;
